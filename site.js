@@ -1,8 +1,9 @@
-import {mountScenes} from './scene-ui.js';
+import {mountScenes} from './scene-ui.js?v=d09-full-20261124';
 const d=window.R2G;
 const entries=d.models.models||[];
 const models=Array.isArray(entries)?Object.fromEntries(entries.map(m=>[m.scene+'/'+m.variant,m])):entries;
 mountScenes(document.querySelector('#real2sim-viewer'),d.scenes.sections[0].scenes,models);
+if(new URLSearchParams(location.search).get('scene')==='D09')document.querySelector('#real2sim-viewer .scene-card[data-id="D09"]')?.click();
 mountScenes(document.querySelector('#augmentation-viewer'),d.scenes.sections[1].scenes,models,true);
 window.mountAgent('#agent-viewer',d.agent);
 if(window.mountRobot)window.mountRobot('#robot-viewer',d.metadata.robot);
